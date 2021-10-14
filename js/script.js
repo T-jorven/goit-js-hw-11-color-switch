@@ -7,17 +7,34 @@ const colors = [
   '#795548',
 ];
 
-const body = document.querySelector("body");  
-const buttonsDiv = document.querySelector("#buttons");
-const startButton = document.querySelector(".js-start");
-const stopButton = document.querySelector(".js-stop");
-buttonsDiv.addEventListener('click', buttonStatus);
+//References
+  const startBtnRef = document.querySelector(".js-start");
+  const stopBtnRef = document.querySelector(".js-stop");
+  let timerId = null;
+  
+//Functions
+  startBtnRef.addEventListener("click", () => {
+    timerId = setInterval(() => {
+        let color = colors[Math.floor(Math.random()*colors.length)];
+        document.body.style.backgroundColor = color;
+        startBtnRef.disabled = true;
+    }, 1000);
+  });
+  
+  stopBtnRef.addEventListener("click", () => {
+    clearInterval(timerId);
+    startBtnRef.disabled = false;
+  });
 
 
-const randomIntegerFromInterval = (min, max) => {
-  return Math.floor(Math.random() * (max - min + 1) + min);
-};
-stopButton.def
+
+
+
+
+
+
+
+/* stopButton.def
 
 //BACKGROUND COLOR CHANGE
 let setNewColor;
@@ -42,4 +59,4 @@ function buttonStatus(event, setNewColor) {
         stopButton.disabled = true;
         clearInterval(colorInerval);
     }
-};
+}; */
